@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import sqlite3
 import os
@@ -62,6 +62,9 @@ def handle_request():
 
     conn.close()
     return jsonify(result)
-
+@app.route('/')
+def serve_form():
+    return send_from_directory('.', 'form.html')
 if __name__ == '__main__':
     app.run(debug=True)
+    
